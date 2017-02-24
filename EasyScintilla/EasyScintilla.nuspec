@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>EasyScintilla</id>
+    <version>1.0.0</version>
+    <title>Easy Scintilla</title>
+    <authors>Adam Schiavone</authors>
+    <owners>Adam Schiavone</owners>
+    <licenseUrl>https://github.com/adam8797/EasyScintilla/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/adam8797/EasyScintilla</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A simple drop in control for ScintillaNET. Drop a SimpleEditor control onto a form, and select your style.</description>
+    <releaseNotes>SInitial Release</releaseNotes>
+    <copyright>Released under the GNU General Public License version 3</copyright>
+    <tags>Scintilla Scintilla.net ScintillaNET Easy</tags>
+  </metadata>
+</package>
