@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using EasyScintilla.Stylers;
 using ScintillaNET;
-using ScintillaWrapper.Stylers;
 
-namespace ScintillaWrapper
+namespace EasyScintilla
 {
     public sealed class SimpleEditor : ScintillaNET.Scintilla
     {

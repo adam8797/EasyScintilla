@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using ScintillaNET;
 
-namespace ScintillaWrapper.Stylers
+namespace EasyScintilla.Stylers
 {
     public class PowerShellStyler : ScintillaStyler
     {

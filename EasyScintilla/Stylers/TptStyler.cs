@@ -1,4 +1,4 @@
-﻿namespace ScintillaWrapper.Stylers
+﻿namespace EasyScintilla.Stylers
 {
     public class TptStyler : SqlStyler
     {

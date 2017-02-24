@@ -1,6 +1,6 @@
 ﻿using ScintillaNET;
 
-namespace ScintillaWrapper.Stylers
+namespace EasyScintilla.Stylers
 {
     public abstract class ScintillaStyler
     {
