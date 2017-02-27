@@ -19,7 +19,7 @@ From the forms designer, simply drag the `SimpleEditor` control from the toolbox
 Then, in the code behind set the `Styler` property.
 
 ```C#
-this.simpleEditor1 = new CSharpStyler();
+this.simpleEditor1.Styler = new CSharpStyler();
 ```
 
 That's it!
