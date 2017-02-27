@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.26206.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyScintilla", "EasyScintilla\EasyScintilla.csproj", "{ABA5A657-167B-43E5-9B6C-651715A613A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleProject", "ExampleProject\ExampleProject.csproj", "{87BF5097-DE0D-4BDA-89C2-3E87D47FFD57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,10 @@ Global
 		{ABA5A657-167B-43E5-9B6C-651715A613A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABA5A657-167B-43E5-9B6C-651715A613A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABA5A657-167B-43E5-9B6C-651715A613A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87BF5097-DE0D-4BDA-89C2-3E87D47FFD57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87BF5097-DE0D-4BDA-89C2-3E87D47FFD57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87BF5097-DE0D-4BDA-89C2-3E87D47FFD57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87BF5097-DE0D-4BDA-89C2-3E87D47FFD57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
