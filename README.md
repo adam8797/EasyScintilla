@@ -4,7 +4,7 @@ A (hopefully) easier way yo use Scintilla.NET in Windows Forms
 
 ### Installation
 
-The easiest way to install is to use NuGet!
+The easiest way to install is to use [NuGet](https://www.nuget.org/packages/EasyScintilla/)!
 
 ```
 > Install-Package EasyScintilla
