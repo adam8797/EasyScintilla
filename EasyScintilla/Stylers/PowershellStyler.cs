@@ -47,8 +47,8 @@ namespace EasyScintilla.Stylers
             scintilla.Styles[Style.PowerShell.HereString].ForeColor = ColorTranslator.FromHtml("#808080");
             scintilla.Styles[Style.PowerShell.HereString].BackColor = Color.White;
 
-            scintilla.Styles[Style.PowerShell.HereCharcter].ForeColor = ColorTranslator.FromHtml("#808080");
-            scintilla.Styles[Style.PowerShell.HereCharcter].BackColor = Color.White;
+            scintilla.Styles[Style.PowerShell.HereCharacter].ForeColor = ColorTranslator.FromHtml("#808080");
+            scintilla.Styles[Style.PowerShell.HereCharacter].BackColor = Color.White;
 
             scintilla.Styles[Style.PowerShell.CommentDocKeyword].ForeColor = ColorTranslator.FromHtml("#008080");
             scintilla.Styles[Style.PowerShell.CommentDocKeyword].BackColor = Color.White;
