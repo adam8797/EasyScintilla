@@ -2,7 +2,7 @@
 A (hopefully) easier way to use Scintilla.NET in Windows Forms
 
 
-### Installation
+## Installation
 
 The easiest way to install is to use [NuGet](https://www.nuget.org/packages/EasyScintilla/)!
 
@@ -10,7 +10,7 @@ The easiest way to install is to use [NuGet](https://www.nuget.org/packages/Easy
 > Install-Package EasyScintilla
 ```
 
-### Usage
+## Usage
 
 The goal was to make Scintilla as easy as possible to drop into a Windows Forms project.
 
@@ -23,6 +23,23 @@ this.simpleEditor1.Styler = new CSharpStyler();
 ```
 
 That's it!
+
+## Common Issues
+
+Some users have been having issues where the `SimpleEditor` control does not get added to the Designer Toolbox.
+
+To fix that, follow these steps:
+
+1. If you've not done so already, install EasyScintilla
+2. Open up the Windows Forms Designer
+3. Right click on the empty space in the Toolbox, and click "Choose Items"
+4. Once it has finished loading, click Browse.
+5. Navigate to your project directory, and look for the folder called "packages". This is where Visual Studio saves your NuGet packages after you install them.
+6. Navigate to `[solution_root]\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40` and choose the file `ScintillaNET.dll` and click OK.
+7. Navigate to `[solution_root]\packages\EasyScintilla.1.0.3\lib\net40` and choose `EasyScintilla.dll` and click OK.
+8. Click OK.
+9. You should now see both the `Scintilla` and `SimpleEditor` controls appear in the Toolbox. `Scintilla` is the base editor from Scintilla.NET and `SimpleEditor` is from this project.
+
 
 ## Stylers
 
