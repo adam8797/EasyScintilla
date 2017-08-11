@@ -1,5 +1,5 @@
 # EasyScintilla
-A (hopefully) easier way to use Scintilla.NET in Windows Forms
+A (hopefully) easier way to use [ScintillaNET](https://github.com/jacobslusser/ScintillaNET) in Windows Forms
 
 
 ## Installation
