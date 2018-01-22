@@ -46,8 +46,10 @@ namespace EasyScintilla.Stylers
 
 
 			var builtInTypeNames = typeof(string).Assembly.GetTypes()
-				.Where(t => t.IsPublic && t.IsVisible && !t.IsGenericType)
-				.Select(t => t.Name);
+				.Where(t => t.IsPublic && t.IsVisible)
+				.Select(t => new { t.Name, Length = t.Name.IndexOf('`') })				// remove generic type from "List`1"
+				.Select(x => x.Length == -1 ? x.Name : x.Name.Substring(0, x.Length))
+				.Distinct();
 
 			scintilla.SetKeywords(1, string.Join(" ", builtInTypeNames));
 		}
