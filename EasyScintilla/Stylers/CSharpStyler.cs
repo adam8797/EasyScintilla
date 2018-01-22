@@ -16,16 +16,16 @@ namespace EasyScintilla.Stylers
 			scintilla.Styles[Style.Cpp.Default].ForeColor = Color.Silver;
 			scintilla.Styles[Style.Cpp.Comment].ForeColor = Color.FromArgb(0, 128, 0); // Green
 			scintilla.Styles[Style.Cpp.CommentLine].ForeColor = Color.FromArgb(0, 128, 0); // Green
-			scintilla.Styles[Style.Cpp.CommentLineDoc].ForeColor = Color.FromArgb(128, 128, 128); // Gray
-			scintilla.Styles[Style.Cpp.Number].ForeColor = Color.Olive;
+			scintilla.Styles[Style.Cpp.CommentLineDoc].ForeColor = Color.FromArgb(0, 128, 0); // Green
+			scintilla.Styles[Style.Cpp.Number].ForeColor = Color.DarkOliveGreen;
 			scintilla.Styles[Style.Cpp.Word].ForeColor = Color.Blue;
 			scintilla.Styles[Style.Cpp.Word2].ForeColor = Color.Navy;
 			scintilla.Styles[Style.Cpp.String].ForeColor = Color.FromArgb(163, 21, 21); // Red
 			scintilla.Styles[Style.Cpp.Character].ForeColor = Color.FromArgb(163, 21, 21); // Red
 			scintilla.Styles[Style.Cpp.Verbatim].ForeColor = Color.FromArgb(163, 21, 21); // Red
 			scintilla.Styles[Style.Cpp.StringEol].BackColor = Color.Pink;
-			scintilla.Styles[Style.Cpp.Operator].ForeColor = Color.Purple;
-			scintilla.Styles[Style.Cpp.Preprocessor].ForeColor = Color.Maroon;
+			scintilla.Styles[Style.Cpp.Operator].ForeColor = Color.FromArgb(0, 0, 120); // Dark Blue
+			scintilla.Styles[Style.Cpp.Preprocessor].ForeColor = Color.FromArgb(128, 128, 128); // Gray
 		}
 
 		public override void RemoveStyle(ScintillaNET.Scintilla scintilla)
