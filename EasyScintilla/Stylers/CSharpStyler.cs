@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Linq;
 using ScintillaNET;
 
 namespace EasyScintilla.Stylers
@@ -19,7 +20,7 @@ namespace EasyScintilla.Stylers
 			scintilla.Styles[Style.Cpp.CommentLineDoc].ForeColor = Color.FromArgb(0, 128, 0); // Green
 			scintilla.Styles[Style.Cpp.Number].ForeColor = Color.DarkOliveGreen;
 			scintilla.Styles[Style.Cpp.Word].ForeColor = Color.Blue;
-			scintilla.Styles[Style.Cpp.Word2].ForeColor = Color.Navy;
+			scintilla.Styles[Style.Cpp.Word2].ForeColor = Color.FromArgb(52, 146, 184); // Turqoise
 			scintilla.Styles[Style.Cpp.String].ForeColor = Color.FromArgb(163, 21, 21); // Red
 			scintilla.Styles[Style.Cpp.Character].ForeColor = Color.FromArgb(163, 21, 21); // Red
 			scintilla.Styles[Style.Cpp.Verbatim].ForeColor = Color.FromArgb(163, 21, 21); // Red
@@ -36,13 +37,19 @@ namespace EasyScintilla.Stylers
 		{
 			scintilla.SetKeywords(0, "abstract partial as base break case catch checked continue default" +
 													 " delegate do else event explicit extern false finally fixed for foreach" +
-													 " goto if implicit in interface internal is lock namespace new null object" +
+													 " goto if implicit in interface internal is lock namespace new null" +
 													 " operator out override params private protected public readonly ref return" +
 													 " sealed sizeof stackalloc switch this throw true try typeof unchecked unsafe" +
-													 " using virtual while volatile yield var async await");
-
-			scintilla.SetKeywords(1, "bool byte char class const decimal double enum float int long sbyte short" +
+													 " using virtual while volatile yield var async await" +
+													 " object bool byte char class const decimal double enum float int long sbyte short" +
 													 " static string struct uint ulong ushort void dynamic ");
+
+
+			var builtInTypeNames = typeof(string).Assembly.GetTypes()
+				.Where(t => t.IsPublic && t.IsVisible && !t.IsGenericType)
+				.Select(t => t.Name);
+
+			scintilla.SetKeywords(1, string.Join(" ", builtInTypeNames));
 		}
 	}
 }
