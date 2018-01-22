@@ -30,7 +30,7 @@ namespace EasyScintilla.Stylers
 			scintilla.Styles[Style.Cpp.String].ForeColor = Color.FromArgb(252, 156, 108); // Red
 			scintilla.Styles[Style.Cpp.Character].ForeColor = Color.FromArgb(252, 156, 108); // Red
 			scintilla.Styles[Style.Cpp.Verbatim].ForeColor = Color.FromArgb(252, 156, 108); // Red
-			scintilla.Styles[Style.Cpp.StringEol].BackColor = Color.FromArgb(111, 13, 13); // Dark Red
+			scintilla.Styles[Style.Cpp.StringEol].BackColor = Color.FromArgb(200, 130, 130); // Dark Red
 			scintilla.Styles[Style.Cpp.Operator].ForeColor = Color.FromArgb(200, 230, 255); // Bright Blue (nearly White)
 			scintilla.Styles[Style.Cpp.Preprocessor].ForeColor = Color.FromArgb(146, 206, 255); // Bright Blue
 
@@ -42,6 +42,9 @@ namespace EasyScintilla.Stylers
 
 			scintilla.SetFoldMarginHighlightColor(true, backColor);
 			scintilla.SetFoldMarginColor(true, backColor);
+
+			scintilla.SetSelectionBackColor(true, Color.FromArgb(38, 79, 120));
+			
 		}
 
 		public override void RemoveStyle(Scintilla scintilla)
@@ -50,8 +53,10 @@ namespace EasyScintilla.Stylers
 
 			scintilla.CaretForeColor = _backupCaretForeColor;
 
-			scintilla.SetFoldMarginColor(false, Color.White);
-			scintilla.SetFoldMarginHighlightColor(false, Color.White);
+			scintilla.SetFoldMarginColor(false, Color.Empty);
+			scintilla.SetFoldMarginHighlightColor(false, Color.Empty);
+
+			scintilla.SetSelectionBackColor(true, Color.Silver);
 		}
 	}
 }

@@ -27,10 +27,13 @@ namespace EasyScintilla.Stylers
 			scintilla.Styles[Style.Cpp.StringEol].BackColor = Color.Pink;
 			scintilla.Styles[Style.Cpp.Operator].ForeColor = Color.FromArgb(0, 0, 120); // Dark Blue
 			scintilla.Styles[Style.Cpp.Preprocessor].ForeColor = Color.FromArgb(128, 128, 128); // Gray
+
+			scintilla.SetSelectionBackColor(true, Color.FromArgb(153, 201, 239));
 		}
 
 		public override void RemoveStyle(ScintillaNET.Scintilla scintilla)
 		{
+			scintilla.SetSelectionBackColor(true, Color.Silver);
 		}
 
 		public override void SetKeywords(ScintillaNET.Scintilla scintilla)
