@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>EasyScintilla</id>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <title>Easy Scintilla</title>
     <authors>Adam Schiavone</authors>
     <owners>Adam Schiavone</owners>
@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/adam8797/EasyScintilla</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A simple drop in control for ScintillaNET. Drop a SimpleEditor control onto a form, and select your style.</description>
-    <releaseNotes>Updated reference to ScintillaNET</releaseNotes>
+    <releaseNotes>Added "Dark C# Styler" and C# Keyword Improvements</releaseNotes>
     <copyright>Released under the GNU General Public License version 3</copyright>
     <tags>Scintilla Scintilla.net ScintillaNET Easy</tags>
   </metadata>

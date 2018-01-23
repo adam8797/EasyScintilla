@@ -89,6 +89,7 @@
     <Compile Include="Stylers\TptStyler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="EasyScintilla.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
