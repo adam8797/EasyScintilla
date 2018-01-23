@@ -28,7 +28,12 @@ namespace ExampleProject
             editor.Styler = new CSharpStyler();
         }
 
-        private void btnHtml_Click(object sender, EventArgs e)
+		private void btnCsDark_Click(object sender, EventArgs e)
+		{
+			editor.Styler = new DarkCSharpStyler();
+		}
+
+		private void btnHtml_Click(object sender, EventArgs e)
         {
             editor.Styler = new HtmlStyler();
         }

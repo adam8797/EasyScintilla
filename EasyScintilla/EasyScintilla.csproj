@@ -77,6 +77,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Stylers\BatchStyler.cs" />
+    <Compile Include="Stylers\DarkCSharpStyler.cs" />
     <Compile Include="Stylers\CSharpStyler.cs" />
     <Compile Include="Stylers\HtmlStyler.cs" />
     <Compile Include="Stylers\PowershellStyler.cs" />
