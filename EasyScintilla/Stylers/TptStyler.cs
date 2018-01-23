@@ -25,7 +25,7 @@
                                      "tablesample text textsize then time timestamp tinyint to top tran " +
                                      "transaction trigger truncate try union unique uniqueidentifier update " +
                                      "updatetext use user values varbinary varchar varying view waitfor when " +
-                                     "where while with writetext xml " + 
+                                     "where while with writetext xml " +
                                      //Custom TPT
                                      "define job operator type schema attributes varchar integer decimal character apply step to select from");
             // Word2 = 1

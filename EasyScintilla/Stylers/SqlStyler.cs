@@ -13,8 +13,8 @@ namespace EasyScintilla.Stylers
         public override void ApplyStyle(ScintillaNET.Scintilla scintilla)
         {
             // Set the Styles
-            scintilla.Styles[Style.LineNumber].ForeColor = Color.FromArgb(255, 128, 128, 128);  //Dark Gray
-            scintilla.Styles[Style.LineNumber].BackColor = Color.FromArgb(255, 228, 228, 228);  //Light Gray
+            scintilla.Styles[Style.LineNumber].ForeColor = Color.FromArgb(255, 128, 128, 128); //Dark Gray
+            scintilla.Styles[Style.LineNumber].BackColor = Color.FromArgb(255, 228, 228, 228); //Light Gray
             scintilla.Styles[Style.Sql.Comment].ForeColor = Color.Green;
             scintilla.Styles[Style.Sql.CommentLine].ForeColor = Color.Green;
             scintilla.Styles[Style.Sql.CommentLineDoc].ForeColor = Color.Green;
@@ -22,7 +22,7 @@ namespace EasyScintilla.Stylers
             scintilla.Styles[Style.Sql.Word].ForeColor = Color.Blue;
             scintilla.Styles[Style.Sql.Word2].ForeColor = Color.Fuchsia;
             scintilla.Styles[Style.Sql.User1].ForeColor = Color.Gray;
-            scintilla.Styles[Style.Sql.User2].ForeColor = Color.FromArgb(255, 00, 128, 192);    //Medium Blue-Green
+            scintilla.Styles[Style.Sql.User2].ForeColor = Color.FromArgb(255, 00, 128, 192); //Medium Blue-Green
             scintilla.Styles[Style.Sql.String].ForeColor = Color.Red;
             scintilla.Styles[Style.Sql.Character].ForeColor = Color.Red;
             scintilla.Styles[Style.Sql.Operator].ForeColor = Color.Black;

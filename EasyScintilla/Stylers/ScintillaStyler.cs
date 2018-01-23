@@ -11,7 +11,8 @@ namespace EasyScintilla.Stylers
         private bool _autoIndent;
 
         protected ScintillaStyler(Lexer lex) : this(lex, true, true, true, true)
-        {}
+        {
+        }
 
         protected ScintillaStyler(Lexer lex, bool lineNumbers, bool codeFolding, bool braceMatching, bool autoIndent)
         {
@@ -74,7 +75,14 @@ namespace EasyScintilla.Stylers
             return false;
         }
 
-        public virtual char IndentChar { get { return '{'; } }
-        public virtual char OutdentChar { get { return '}'; } }
+        public virtual char IndentChar
+        {
+            get { return '{'; }
+        }
+
+        public virtual char OutdentChar
+        {
+            get { return '}'; }
+        }
     }
 }

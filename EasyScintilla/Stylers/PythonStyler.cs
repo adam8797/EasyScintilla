@@ -7,9 +7,13 @@ namespace EasyScintilla.Stylers
     {
         public PythonStyler()
             : base(Lexer.Python, lineNumbers: true, codeFolding: true, braceMatching: true, autoIndent: true)
-        {}
+        {
+        }
 
-        public override char IndentChar { get { return ':'; } }
+        public override char IndentChar
+        {
+            get { return ':'; }
+        }
 
         public override void ApplyStyle(ScintillaNET.Scintilla scintilla)
         {

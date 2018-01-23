@@ -34,7 +34,6 @@ namespace EasyScintilla.Stylers
 
             scintilla.Styles[Style.Batch.Operator].ForeColor = Color.Red;
             scintilla.Styles[Style.Batch.Operator].BackColor = Color.White;
-
         }
 
         public override void RemoveStyle(ScintillaNET.Scintilla scintilla)
@@ -48,7 +47,6 @@ namespace EasyScintilla.Stylers
                 "ctty date defined del dir do dpath echo else endlocal erase errorlevel exist exit for ftype goto if in loadfix " +
                 "loadhigh lpt lpt1 lpt2 lpt3 lpt4 md mkdir move not nul path pause popd prn prompt pushd rd rem ren rename " +
                 "rmdir set setlocal shift start time title type ver verify vol");
-
         }
     }
 }

@@ -7,7 +7,6 @@ namespace EasyScintilla.Stylers
     {
         public RubyStyler() : base(Lexer.Ruby)
         {
-            
         }
 
         public override void ApplyStyle(ScintillaNET.Scintilla scintilla)
@@ -78,7 +77,6 @@ namespace EasyScintilla.Stylers
 
         public override void RemoveStyle(ScintillaNET.Scintilla scintilla)
         {
-            
         }
 
         public override void SetKeywords(ScintillaNET.Scintilla scintilla)

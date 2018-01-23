@@ -52,7 +52,6 @@ namespace EasyScintilla.Stylers
 
             scintilla.Styles[Style.Html.Entity].ForeColor = Color.Black;
             scintilla.Styles[Style.Html.Entity].BackColor = ColorTranslator.FromHtml("#FEFDE0");
-
         }
 
         public override void RemoveStyle(ScintillaNET.Scintilla scintilla)
