@@ -59,7 +59,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ScintillaNET, Version=3.6.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40\ScintillaNET.dll</HintPath>
+      <HintPath>..\..\PrettyJason\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40\ScintillaNET.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -80,6 +80,7 @@
     <Compile Include="Stylers\DarkCSharpStyler.cs" />
     <Compile Include="Stylers\CSharpStyler.cs" />
     <Compile Include="Stylers\HtmlStyler.cs" />
+    <Compile Include="Stylers\JsonStyler.cs" />
     <Compile Include="Stylers\PowershellStyler.cs" />
     <Compile Include="Stylers\RubyStyler.cs" />
     <Compile Include="Stylers\ScintillaStyler.cs" />
