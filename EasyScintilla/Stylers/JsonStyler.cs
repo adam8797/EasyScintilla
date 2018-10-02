@@ -5,7 +5,7 @@ namespace EasyScintilla.Stylers
 {
     public class JsonStyler : ScintillaStyler
     {
-        public JsonStyler() : base(Lexer.Html)
+        public JsonStyler() : base(Lexer.Json)
         {
         }
 
