@@ -19,7 +19,6 @@ namespace EasyScintilla.Stylers
             scintilla.Styles[Style.Json.String].ForeColor = Color.FromArgb(163, 21, 21); // Red
             scintilla.Styles[Style.Json.StringEol].BackColor = Color.Pink;
             scintilla.Styles[Style.Json.Operator].ForeColor = Color.Purple;
-            scintilla.Lexer = Lexer.Json;
         }
 
         public override void RemoveStyle(ScintillaNET.Scintilla scintilla)
