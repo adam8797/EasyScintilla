@@ -80,6 +80,7 @@
     <Compile Include="Stylers\DarkCSharpStyler.cs" />
     <Compile Include="Stylers\CSharpStyler.cs" />
     <Compile Include="Stylers\HtmlStyler.cs" />
+    <Compile Include="Stylers\JsonStyler.cs" />
     <Compile Include="Stylers\PowershellStyler.cs" />
     <Compile Include="Stylers\RubyStyler.cs" />
     <Compile Include="Stylers\ScintillaStyler.cs" />
