@@ -44,11 +44,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExampleDisplay.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,5 +90,17 @@
       <Name>EasyScintilla</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ExampleCode\cs.txt" />
+    <EmbeddedResource Include="ExampleCode\json.txt" />
+    <EmbeddedResource Include="ExampleCode\ps1.txt" />
+    <EmbeddedResource Include="ExampleCode\bat.txt" />
+    <EmbeddedResource Include="ExampleCode\html.txt" />
+    <EmbeddedResource Include="ExampleCode\sql.txt" />
+    <EmbeddedResource Include="ExampleCode\tpt.txt" />
+    <EmbeddedResource Include="ExampleCode\rb.txt" />
+    <EmbeddedResource Include="ExampleCode\py.txt" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

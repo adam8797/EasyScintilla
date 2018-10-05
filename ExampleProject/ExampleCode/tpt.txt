@@ -1,0 +1,67 @@
+﻿DEFINE SCHEMA SCHEMA_EMP_NAME
+(
+	NAME VARCHAR(50),
+	AGE VARCHAR(2)
+);
+	
+DEFINE OPERATOR op_EMP_NAME
+TYPE DATACONNECTOR PRODUCER
+SCHEMA SCHEMA_EMP_NAME
+ATTRIBUTES
+(
+	VARCHAR  DirectoryPath= ‘’,
+	VARCHAR  FileName = ‘NAME.CSV’,
+	VARCHAR  Format   = ‘Delimited’,
+	VARCHAR  OpenMode = ‘Read’,
+	VARCHAR  TextDelimiter =’|’
+);
+
+ DEFINE OPERATOR od_EMP_NAME
+TYPE DDL
+ATTRIBUTES
+(
+	VARCHAR PrivateLogName = ”,
+	VARCHAR LogonMech           = ”,
+	VARCHAR TdpId          = ”,
+	VARCHAR UserName       = ”,
+	VARCHAR UserPassword   = ”,
+	VARCHAR ErrorList      = ‘3807’
+);
+
+DEFINE OPERATOR ol_EMP_NAME
+TYPE LOAD
+SCHEMA *
+ATTRIBUTES
+(
+	VARCHAR LogonMech           = ”,
+	VARCHAR TdpId          = ”,
+	VARCHAR UserName       = ”,
+	VARCHAR UserPassword   = ”,
+	VARCHAR  LogTable     =  ‘EMP_NAME_LG’,
+	VARCHAR  ErrorTable1  =  ‘EMP_NAME_ET’,
+	VARCHAR  ErrorTable2  =  ‘EMP_NAME_UV’,
+	VARCHAR  TargetTable  =  ‘EMP_NAME’
+);
+
+STEP stSetup_Tables
+(
+	APPLY
+		(‘DROP TABLE EMP_NAME_LG;’),
+		(‘DROP TABLE EMP_NAME_ET;’),
+		(‘DROP TABLE EMP_NAME_UV;’),
+		(‘DROP TABLE EMP_NAME;’),
+		(‘CREATE TABLE EMP_NAME(NAME VARCHAR(50), AGE VARCHAR(2));’)
+	TO OPERATOR (od_EMP_NAME);
+);
+
+STEP stLOAD_FILE_NAME
+(
+	APPLY
+		(‘INSERT INTO EMP_NAME
+		(Name,Age)
+	VALUES
+		(:Name,:Age);
+		‘)
+	TO OPERATOR (ol_EMP_NAME)
+	SELECT * FROM OPERATOR(op_EMP_NAME);
+);

@@ -1,0 +1,236 @@
+﻿#!/usr/bin/env python
+import sys
+
+import numpy as np
+import cv2
+from matplotlib import pyplot as plt
+
+def remove_vertical_seam(image, seam):
+    """
+    Removes the given seam from the image.
+    
+    image : an n x m array (may have multiple channels)
+    seam : an n x 1 array of X-coordinates defining the seam pixels in top-down order.
+    
+    Thus, seam[0] means remove pixel (0, seam[0]) from the input image.
+    
+    returns: an n x (m - 1) image with the seam removed.
+    """
+    newImg = np.zeros((image.shape[0], image.shape[1] - 1, 3))
+    for i in range(0, len(image)):
+        newRow = np.delete(image[i], [seam[i]], axis=0)
+        newImg[i] = newRow
+    return newImg
+
+
+def insert_vertical_seam(image, seam):
+    newImg = np.zeros((image.shape[0], image.shape[1] + 1, 3))
+    # get the values we'll be duplicating
+    seamValues = np.zeros((image.shape[0], 3))
+    for i in range(0, len(seam)):
+        seamValue = image[i][seam[i]]
+        seamValues[i] = seamValue
+
+    # duplicate the seam
+    for i in range(0, len(image)):
+        newImg[i] = np.insert(image[i], seam[i], seamValues[i], axis=0)
+
+    return newImg
+
+def gradient_magnitude(image):
+    """
+    Returns the L1 gradient magnitude of the given image.
+    The result is an n x m numpy array of floating point values,
+    where n is the number of rows in the image and m is the number of columns.
+    """
+    if image.dtype == np.float64:
+        image = image.astype(np.uint8)
+
+    img = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+    img = np.float32(img) * (1.0/255.0)
+
+    sobelx = normalizeAboveZero(cv2.Sobel(img, cv2.CV_32F, 1, 0, ksize=3))
+    sobely = normalizeAboveZero(cv2.Sobel(img, cv2.CV_32F, 0, 1, ksize=3))
+
+    # Honestly, by this point I was pretty lost.
+    # I really dont know what the L1 normal is. I figured how to compute a normal for the entire
+    # 2d image by using
+    # cv2.norm(sobelx, cv2.NORM_L1)
+    # but this was looking for a matrix, and that only returned one value
+    # I spent way too much time on this function.
+    # For the most part, I think this function is why this script does not work as intended
+
+    return cv2.addWeighted(sobelx, 0.5, sobely, 0.5, 0)
+
+
+def compute_seam_costs(energy):
+    """
+    Computes the cumulative minimum energy of every possible seam in the provided energy image.
+    You can do this using the dynamic programming rule:
+         M(i, j) = e(i, j) + min( M(i-1, j-1), M(i-1, j), M(i-1, j+1) 
+    
+    energy : an n x m single channel image defining the energy at each pixel.
+    returns : an n x m image containing the cumulative minimum energy cost of all seams through each pixel.
+    """
+
+    # Create M, an n x m matrix with the first row equal to energy.
+    cost = np.zeros(energy.shape)
+
+    for i, cell in enumerate(energy[0]):
+        cost[0][i] = cell
+
+    # Iterate over the rows, starting at row 1
+    for i in range(0, len(energy)):
+        if i == 0:
+            continue
+        # Iterate over the column 1 to m - 1
+        for j in range(0, len(energy[i])):
+            # if first column
+            if j == 0:
+                cost[i][j] = energy[i][j] + min(cost[i-1][0], cost[i-1][1])
+            # if last column
+            elif j == cost.shape[1] - 1:
+                cost[i][j] = energy[i][j] + min(cost[i-1][j-1], cost[i-1][j])
+            # if center column
+            else:
+                cost[i][j] = energy[i][j] + min(cost[i-1][j-1], cost[i-1][j], cost[i-1][j+1])
+
+    return cost
+
+
+def minimal_seam(M):
+    """
+    Find the seam with minimal energy cost given the provided seam cost
+    matrix M. Returns the X-coordinates of the minimal-cost vertical seam in
+    top-down order.
+    
+    M: the output from compute_seam_costs.
+    
+    return: a list of x-coordinates starting at row 0 of M containing the ones to remove.
+    """
+
+    lastRow = M[M.shape[0] - 1]
+    nextIndex = np.argmin(lastRow)
+    history = []
+
+    for i in range(M.shape[0] - 1, 0, -1):
+        history.append(nextIndex)
+        if nextIndex == 0:
+            sublist = [M[i - 1][0], M[i - 1][1]]
+            nextIndex = nextIndex + sublist.index(min(sublist))
+        elif nextIndex == M.shape[0] - 1:
+            sublist = [M[i - 1][nextIndex - 1], M[i - 1][nextIndex]]
+            nextIndex = nextIndex + (sublist.index(min(sublist)) - 1)
+        else:
+            sublist = [M[i - 1][nextIndex - 1], M[i - 1][nextIndex], M[i - 1][nextIndex + 1]]
+            nextIndex = nextIndex + (sublist.index(min(sublist)) - 1)
+
+    history.append(nextIndex)
+    return history, np.min(lastRow)
+
+
+def compute_ordering(image, target_size):
+    """
+    Compute the optimal order of horizontal and vertical seam removals to
+    achieve the given target image size. Order should be returned as a list of
+    0 or 1 values corresponding to horizontal and vertical seams
+    respectively.
+    """
+    r = image.shape[0] - target_size[0] + 1
+    c = image.shape[1] - target_size[1] + 1
+    if r < 0 or c < 0:
+        raise ValueError("Target size must be smaller than the input size.")
+    return [0, 1] * min(r-1, c-1) + [0] * max(r-c, 0) + [1] * max(c-r, 0)
+
+
+def resize(image, target_size):
+    output = image.copy()
+    order = compute_ordering(output, target_size)
+
+    for i, seam_type in enumerate(order):
+        print("Removing seam {} / {} ".format(i, len(order)))
+
+        # check if order = 0, if so, transpose the image!
+        if order == 0:
+            output = np.transpose(output)
+
+        # compute the energy using gradient_magnitude
+        energy = gradient_magnitude(output)
+
+        # Compute M using compute_seam_costs
+        M = compute_seam_costs(energy)
+
+        # get the minimal seam using 'minimal_seam'
+        seam, cost = minimal_seam(M)
+
+        # remove it using 'remove_vertical_seam'
+        output = remove_vertical_seam(output, seam)
+
+        # check if order = 0, if so, transpose the image back!
+        if order == 0:
+            output = np.transpose(output)
+
+    # Sanity check.....
+    assert(output.shape[0] == target_size[0] and
+           output.shape[1] == target_size[1])
+           
+    return output
+
+def runDebug(image, target_size):
+    # compute and save a gradient image
+    energy = gradient_magnitude(image.copy()) / 2.0
+    cv2.imwrite("debug-energy.png", energy * 255)
+    print "energy min max {} {}".format(np.min(energy.flatten()), np.max(energy.flatten()))
+    
+    # compute and save the cost image
+    costs = compute_seam_costs(energy)
+    cost = np.log(costs + 1.0)
+    cv2.imwrite("debug-cost.png", cost * 255)
+    
+    # get the minimal seam using 'minimal_seam'
+    seam, seamCost = minimal_seam(cost)
+    print("The minimal seam has cost {}".format(seamCost))
+    print("The first seam is {}".format(seam))
+    
+    # remove it using 'remove_vertical_seam'
+    output = remove_vertical_seam(image.copy(), seam)
+    cv2.imwrite("debug-first-seam-gone.png", output)
+
+    output2 = insert_vertical_seam(image.copy(), seam)
+    cv2.imwrite("debug-first-seam-added.png", output2)
+
+def normalizeAroundZero(matrix):
+    """Normalize a 2d array to values between -1 and 1"""
+    min = matrix.min()
+    diff = matrix.max() - matrix.min()
+    new_matrix = np.zeros(matrix.shape)
+    for i, row in enumerate(matrix):
+        for j, cell in enumerate(row):
+            new_matrix[i, j] = 2 * ((cell - min) / diff) - 1
+    return new_matrix
+
+def normalizeAboveZero(matrix):
+    """Normalize a 2d array to values between 0 and 1"""
+    min = matrix.min()
+    diff = matrix.max() - matrix.min()
+    new_matrix = np.zeros(matrix.shape)
+    for i, row in enumerate(matrix):
+        for j, cell in enumerate(row):
+            new_matrix[i, j] = ((cell - min) / diff)
+    return new_matrix
+
+if __name__ == "__main__":
+    debug = (len(sys.argv) > 5 and sys.argv[5] == "-debug")
+    try:
+        in_fn, w, h, out_fn = sys.argv[1:5]
+        h, w = int(h), int(w)
+    except:
+        print("Usage: python hw1.py FILE TARGET_WIDTH TARGET_HEIGHT OUTPUT")
+        exit(1)
+
+    image = cv2.imread(in_fn)
+    if (debug):
+        runDebug(image, (h, w))
+    else:
+        resized = resize(image, (h,w))
+        cv2.imwrite(out_fn, resized)
