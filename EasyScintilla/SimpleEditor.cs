@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using EasyScintilla.Stylers;
@@ -84,7 +84,7 @@ namespace EasyScintilla
         {
             if (enabled)
             {
-                SetProperty("fold", "1");
+                _styler.ApplyCodeFoldingOptions(this, enabled);
 
                 // Use margin 2 for fold markers
                 Margins[2].Type = MarginType.Symbol;
@@ -115,7 +115,7 @@ namespace EasyScintilla
             }
             else
             {
-                SetProperty("fold", "0");
+                _styler?.ApplyCodeFoldingOptions(this, enabled);
                 Margins[2].Width = 0;
             }
         }
