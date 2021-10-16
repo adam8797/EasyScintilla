@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<reportfile title="ETICHETTA PRODOTTO - 50 x 30 mm">
+
+  <general LabelsPerRow="2" RowsPerPage="1" AllowedArchives="0,1" />
+
+  <pagesetup pagewidth="104" pageheight="30" orientation="portrait">
+    <margins left="0" right="0" top="0" bottom="0" />
+  </pagesetup>
+
+  <detail width="103.9" height="29.9" spacingright="0" spacingbottom="0" visible="=Not {__SLW_IS_BLANK}">
+
+    <group left="-1" top="0" repeatX="52" repeatY="0" repeatXtimes="2" repeatYtimes="1">
+
+      <aspect background="#ffffff|00" />
+      <font name="Arial Narrow" size="8" bold="no" />
+
+      <textbox>
+        <rotation angle="0" />
+        <bounds left="2" top="2" width="40" height="13" />
+        <borders left="0" right="0" top="0" bottom="0" />
+        <align horizontal="left" vertical="top" />
+        <font size="7" />
+        <content>{Descrizione}</content>
+      </textbox>
+
+      <barcode>
+        <type>EAN_13</type>
+        <bounds top="9" left="13" height="12" width="25"/>
+        <borders bottom="0" top="0" right="0" left="0"/>
+        <align vertical="middle" horizontal="left"/>
+        <content>{BarCode}</content>
+      </barcode>
+
+      <group left="2" top="12">
+        <image>
+          <bounds left="0" top="0" />
+          <imagepath>U:\\Files Etichette\\MarchioCE.jpg</imagepath>
+          <size height="5" constrainproportions="yes" />
+        </image>
+        <textbox>
+          <bounds left="7.5" top="0" width="5" height="5" />
+          <borders left="0" right="0" top="0" bottom="0" />
+          <align horizontal="left" vertical="top" />
+          <font name="Arial" bold="yes" size="4" />
+          <content>{AnnoMarchioCE}</content>
+        </textbox>
+        <textbox>
+          <bounds left="7.5" top="0" width="5" height="5" />
+          <borders left="0" right="0" top="0" bottom="0" />
+          <align horizontal="left" vertical="bottom" />
+          <font name="Arial" bold="yes" size="4" />
+          <content>{EnteMarchioCE}</content>
+        </textbox>
+      </group>
+
+      <textbox>
+        <bounds left="2" top="21.5" width="40" height="7" />
+        <align horizontal="left" vertical="top" />
+        <content>{IntestazioneNorma1}\r\n{Valore1}</content>
+      </textbox>
+
+    </group>
+
+  </detail>
+
+</reportfile>
