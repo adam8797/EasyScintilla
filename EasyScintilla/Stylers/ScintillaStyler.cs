@@ -1,4 +1,4 @@
-﻿using ScintillaNET;
+using ScintillaNET;
 
 namespace EasyScintilla.Stylers
 {
@@ -84,5 +84,11 @@ namespace EasyScintilla.Stylers
         {
             get { return '}'; }
         }
+
+        public virtual void ApplyCodeFoldingOptions(ScintillaNET.Scintilla scintilla, bool enableCodeFolding)
+        {
+            scintilla.SetProperty("fold", enableCodeFolding ? "1" : "0");
+        }
+
     }
 }
