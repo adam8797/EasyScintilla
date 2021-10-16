@@ -61,3 +61,4 @@ Examples can be found in the `Stylers` Directory.
 | SQL                                 | `SqlStyler`        |
 | Teradata Parallel Transporter (TPT) | `TptStyler`        |
 | Windows Batch                       | `BatchStyler`      |
+| XML                                 | `XmlStyler`        |
