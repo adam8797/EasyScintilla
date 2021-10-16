@@ -1,11 +1,31 @@
-﻿using System.Drawing;
+using System.Drawing;
 using ScintillaNET;
 
 namespace EasyScintilla.Stylers
 {
     public class HtmlStyler : ScintillaStyler
     {
-        public HtmlStyler() : base(Lexer.Html)
+        public static HtmlStyler HtmlStandard
+            => new HtmlStyler();
+
+        public static HtmlStyler HtmlWithCodeFolding 
+            => new HtmlStyler(true, false);
+
+        public static HtmlStyler HtmlWithLineNumbers
+            => new HtmlStyler(false, true);
+
+        public static HtmlStyler HtmlWithLineNumbersAndCodeFolding
+            => new HtmlStyler(true, true);
+
+
+        private HtmlStyler(bool useCodFolding, bool lineNumbers) 
+            : base(Lexer.Html, lineNumbers, useCodFolding, false, false)
+        {
+        }
+
+        // Included for compatibility
+        public HtmlStyler()
+            : this(false, false)
         {
         }
 
@@ -85,6 +105,15 @@ namespace EasyScintilla.Stylers
                 "select shadow selected shape size small source spacer span spellcheck src standby start strike strong style sub submit " +
                 "summary sup svg svg:svg tabindex table target tbody td template text textarea tfoot th thead time title topmargin " +
                 "tr track tt type u ul usemap valign value valuetype var version video vlink vspace wbr xmp width xml xmlns");
+        }
+
+        public override void ApplyCodeFoldingOptions(Scintilla scintilla, bool enableCodeFolding)
+        {
+            base.ApplyCodeFoldingOptions(scintilla, enableCodeFolding);
+            scintilla.SetProperty("fold.html", enableCodeFolding ? "1" : "0");
+            //scintilla.SetProperty("fold.compact", "1");   // TODO: check what it does really...
+            scintilla.SetProperty("fold.xml.at.tag.open", enableCodeFolding ? "1" : "0");
+            scintilla.SetProperty("fold.hypertext.comment", enableCodeFolding ? "1" : "0");
         }
     }
 }
